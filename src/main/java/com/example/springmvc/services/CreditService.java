@@ -9,7 +9,6 @@ import java.util.List;
 public interface CreditService {
      Credit getCreditByContractId(Long contractId);
      CreditContract getCreditContractById(Long contractId);
-//     Credit getCredit();
      List<Credit> getListOfCredits();
      List<CreditContract> getListOfCreditContracts();
      void makeRequestOnCredit(Credit credit);

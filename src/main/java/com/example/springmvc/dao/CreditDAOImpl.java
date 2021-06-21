@@ -106,17 +106,14 @@ public class CreditDAOImpl  implements CreditDAO{
                                              Integer passport_series, Integer passport_number) {
         Session session = sessionFactory.openSession();
         if (phone!=null){
-            System.out.println("телефон");
             Filter filter= session.enableFilter("phoneCheck");
             filter.setParameter("phone1", phone);
         }
         if (name!=null&&!name.equals("")){
-            System.out.println("имя");
             Filter filter= session.enableFilter("nameCheck");
             filter.setParameter("name1", name);
         }
         if (surname!=null&&!surname.equals("")){
-            System.out.println("фамилия");
             System.out.println(surname);
             Filter filter= session.enableFilter("surnameCheck");
             filter.setParameter("surname1", surname);
@@ -126,7 +123,6 @@ public class CreditDAOImpl  implements CreditDAO{
             filter.setParameter("middle_name1", middle_name);
         }
         if (passport_series!=null){
-            System.out.println("паспорт ку");
             Filter filter= session.enableFilter("passport_seriesCheck");
             filter.setParameter("passport_series1", passport_series);
         }
