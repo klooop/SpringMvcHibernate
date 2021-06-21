@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Credits</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>Оставить заявку на кредит</h2>
+<form th:action="@{/credits/createCredit}" method="get" class="form-horizontal">
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Оставить заявку на кредит</button>
+        </div>
+    </div>
+</form>
+
+
+<h2>Фильтр</h2>
+<form th:action="@{/credits}" method="get" class="form-horizontal">
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"> </i></span>
+        <input th:value="${phone != null} ? ${phone}" name="phone" placeholder="Телефон" class="form-control"/>
+    </div>
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"> </i></span>
+        <input th:value="${surname != null} ? ${surname}" name="surname" placeholder="Фамилия" class="form-control"/>
+    </div>
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"> </i></span>
+        <input th:value="${name != null} ? ${name}" name="name" placeholder="Имя" class="form-control"/>
+    </div>
+
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"> </i></span>
+        <input th:value="${middle_name != null} ? ${middle_name}" name="middle_name" placeholder="Отчество" class="form-control"/>
+    </div>
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"> </i></span>
+        <input th:value="${passport_series != null} ? ${passport_series}" name="passport_series" placeholder="Серия паспорта" class="form-control"/>
+    </div>
+    <div style="margin-bottom: 25px" class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"> </i></span>
+        <input th:value="${passport_number != null} ? ${passport_number}" name="passport_number" placeholder="Номер паспорта" class="form-control"/>
+    </div>
+
+
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Фильтровать</button>
+        </div>
+    </div>
+</form>
+
+<form th:action="@{/credits/showCreditsWithStatusTrue}" method="get" class="form-horizontal">
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Список заявок со статусом одобрения</button>
+        </div>
+    </div>
+</form>
+<form th:action="@{/credits/showCreditsContractsWithCreditStatusTrue}" method="get" class="form-horizontal">
+    <div style="margin-top: 10px" class="form-group">
+        <div class="col-sm-6 controls">
+            <button type="submit" class="btn btn-primary">Список договоров со статусом одобрения</button>
+        </div>
+    </div>
+</form>
+
+<h2>Клиенты и их заявки на кредит</h2>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>ID заявки</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Серия паспорта</th>
+        <th>Номер паспорта</th>
+        <th>Семейное положение</th>
+        <th>Адрес</th>
+        <th>Номер телефона</th>
+        <th>Период работы(месяцы)</th>
+        <th>Позиция</th>
+        <th>Организация</th>
+        <th>Желаемая сумма кредита</th>
+        <th>Статуc</th>>
+        <th>Ответ(дни)</th>>
+        <th>Одобренная сумма</th>>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="credit : ${credits}">
+        <td th:text="${credit.id}"></td>
+        <td th:text="${credit.surname}"></td>
+        <td th:text="${credit.name}"></td>
+        <td th:text="${credit.middle_name}"></td>
+        <td th:text="${credit.passport_series}"></td>
+        <td th:text="${credit.passport_number}"></td>
+        <td th:text="${credit.is_married}"></td>
+        <td th:text="${credit.address}"></td>
+        <td th:text="${credit.phone}"></td>
+        <td th:text="${credit.work_period_months}"></td>
+        <td th:text="${credit.work_position}"></td>
+        <td th:text="${credit.work_organization}"></td>
+        <td th:text="${credit.sum}"></td>
+        <td th:text="${credit.status}"></td>
+        <td th:text="${credit.days}"></td>
+        <td th:text="${credit.approvedSum}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>ID договора</th>
+        <th>ID заявки</th>
+        <th>Статуc подписания</th>>
+        <th>Дата подписания</th>>
+        <th>Одобренная сумма</th>>
+        <th>Подписать кредит</th>>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract : ${creditContract}">
+        <td th:text="${contract.contractId}"></td>
+        <td th:text="${contract.getCredit().getId()}"></td>
+        <td th:text="${contract.creditStatus}"></td>
+        <td th:text="${contract.time}"></td>
+        <td th:text="${contract.creditSum}"></td>
+        <td>
+            <a th:href="@{'/credits/signContract/' + ${contract.contractId}}"  th:text="Подписать"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+</body>

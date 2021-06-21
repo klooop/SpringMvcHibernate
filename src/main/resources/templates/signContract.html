@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Подписание договора</title>
+    <style>
+        input[type="text"] {
+            outline: none;
+            border: none
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h3>Подписание договора</h3>
+
+
+<div class="container">
+    <form th:action="@{/credits/signContract}"
+          th:object="${creditContract}" method="post" class="form-horizontal">
+        <p><b>Фамилия: </b>
+            <input type="text" name="surname" th:field="*{surname}" readonly/>
+            <br>
+        <p><b>Имя: </b>
+            <input type="text" name="name" th:field="*{name}" readonly/>
+            <br>
+        <p><b>Отчество: </b>
+            <input type="text" name="middle_name" th:field="*{middle_name}" readonly/>
+            <br>
+        <p><b>Серия паспорта: </b>
+            <input type="text" name="passport_series" th:field="*{passport_series}" readonly/>
+            <br>
+        <p><b>Номер паспорта: </b>
+            <input type="text" name="passport_number" th:field="*{passport_number}" readonly/>
+            <br>
+        <p><b>Женат?(Замужем?)(Да/Нет): </b>
+            <input type="text" name="is_married" th:field="*{is_married}" readonly/>
+            <br>
+        <p><b>Адрес прописки: </b>
+            <input type="text" name="address" th:field="*{address}" readonly/>
+            <br>
+        <p><b>Номер телефона: </b>
+            <input type="text" name="phone" th:field="*{phone}" readonly/>
+            <br>
+        <p><b>Период работы(месяцы): </b>
+            <input type="text" name="work_period_months" th:field="*{work_period_months}" readonly/>
+            <br>
+        <p><b>Позиция на прошлой работе: </b>
+            <input type="text" name="work_position" th:field="*{work_position}" readonly/>
+            <br>
+        <p><b>Организация прошлой работы: </b>
+            <input type="text" name="work_organization" th:field="*{work_organization}" readonly/>
+            <br>
+        <p><b>Желаемая сумма: </b>
+            <input type="text" name="sum" th:field="*{sum}" readonly/>
+            <br>
+        <p><b>Статус заявки: </b>
+            <input type="text" name="status" th:field="*{status}" readonly/>
+            <br>
+        <p><b>Рассмотрена за(дней): </b>
+            <input type="text" name="days" th:field="*{days}" readonly/>
+            <br>
+        <p><b>Одобренная сумма: </b>
+            <input type="text" name="approvedSum" th:field="*{approvedSum}" readonly/>
+            <br>
+        <p><b>Дата подписания: </b>
+            <label>
+                <input type="text" name="time" th:field="*{time}" readonly/>
+            </label>
+            <br>
+        <p><b>Подписать: </b>
+            <input type="checkbox" name="confirmStatus" th:checked="*{confirmStatus}"/>
+            <input type="text" name="creditContractId" th:field="*{creditContractId}" hidden/>
+
+        <div style="margin-top: 10px" class="form-group">
+            <div class="col-sm-6 controls">
+                <button type="submit" class="btn btn-primary">Готово</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>
+
+

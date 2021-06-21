@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+<h2>Договора клиентов на кредит</h2>
+
+<body>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>ID договора</th>
+        <th>ID заявки</th>
+        <th>Статуc подписания</th>
+        >
+        <th>Дата подписания</th>
+        >
+        <th>Одобренная сумма</th>
+        >
+        <th>Подписать кредит</th>
+        >
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contract : ${creditContract}">
+        <td th:text="${contract.contractId}"></td>
+        <td th:text="${contract.getCredit().getId()}"></td>
+        <td th:text="${contract.creditStatus}"></td>
+        <td th:text="${contract.time}"></td>
+        <td th:text="${contract.creditSum}"></td>
+        <td>
+            <a th:href="@{'/credits/signContract/' + ${contract.contractId}}" th:text="Подписать"></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
